@@ -3,7 +3,7 @@ from src.client.routes import BaseRouter
 
 
 class Places(BaseRouter):
-    __BASE = "/places"
+    __BASE = "places"
 
     async def edit(
         self, 
@@ -13,7 +13,7 @@ class Places(BaseRouter):
         category: str = "",
         filters: List[str] = ""
     ): 
-        return await self.__post(
+        return await self._post(
             "/edit", 
             place_id=place_id,
             title=title, 
@@ -26,6 +26,6 @@ class Places(BaseRouter):
         self, 
         place_id: int
     ) -> None: 
-        return await self.__post(
+        return await self._post(
             "/remove", place_id=place_id
         )

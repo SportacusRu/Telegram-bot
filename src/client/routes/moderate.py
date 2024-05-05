@@ -3,11 +3,11 @@ from src.client.routes import BaseRouter
 
 
 class Moderate(BaseRouter):
-    __BASE = "/moderate"
+    __BASE = "moderate"
 
     async def get(self): 
-        response = await self.__get("/get")
+        response = await self._get("/get")
         return ModerateGetRequst.model_validate_json(response)
 
     async def report(self, text: str) -> None: 
-        await self.__post("/report", text=text)
+        await self._post("/report", text=text)

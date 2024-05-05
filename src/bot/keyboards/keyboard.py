@@ -1,26 +1,33 @@
-from aiogram.utils.keyboard import KeyboardBuilder
-from aiogram.types import KeyboardButton
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from aiogram.types import KeyboardButton, InlineKeyboardButton
 
 
-startKeyboard = KeyboardBuilder()
-startKeyboard.add(KeyboardButton(text="Получить заявку"))
+startKeyboard = ReplyKeyboardBuilder(
+    [[KeyboardButton(text="Получить заявку")]]
+).as_markup()
 
-doPlaceKeyboard = KeyboardBuilder()
-doPlaceKeyboard.add(
-    KeyboardButton("Изменить название места (название в рапорт)"),
-    KeyboardButton("Изменить категорию места (категорию в рапорт)"),
-    KeyboardButton("Изменить фильтры (фильтры в рапорт)"),
-    KeyboardButton("Удалить место"),
-    KeyboardButton("Заблокировать пользователя")
-)
 
-doReviewKeyboard = KeyboardBuilder()
-doReviewKeyboard.add(
-    KeyboardButton("Удалить отзыв"),
-    KeyboardButton("Заблокировать пользователя")
-)
+doPlaceKeyboard = InlineKeyboardBuilder(
+    markup=[
+        [InlineKeyboardButton(text="Изменить название", callback_data="data")],
+        [InlineKeyboardButton(text="Изменить категорию", callback_data="data")],
+        [InlineKeyboardButton(text="Изменить фильтры", callback_data="data")],
+        [
+            InlineKeyboardButton(text="Удалить", callback_data="data"), 
+            InlineKeyboardButton(text="Забанить", callback_data="data")
+        ]
+    ]
+).as_markup()
 
-cancelKeyboard = KeyboardBuilder()
-cancelKeyboard.add(
-    KeyboardButton("Назад к действиям")
-)
+
+doReviewKeyboard = InlineKeyboardBuilder(
+    [[
+        InlineKeyboardButton(text="Удалить", callback_data="data"),
+        InlineKeyboardButton(text="Забанить", callback_data="data")
+    ]]
+).as_markup()
+
+
+cancelKeyboard = InlineKeyboardBuilder(
+    [[InlineKeyboardButton(text="Назад к действиям", callback_data="data")]]
+).as_markup()

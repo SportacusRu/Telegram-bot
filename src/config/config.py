@@ -1,6 +1,8 @@
-from os import getenv
+from decouple import config
 
 
-TOKEN = getenv("TOKEN")
-MODERATOR_ID = int(getenv("MODERATOR_ID"))
-MODERATOR_KEY = getenv("MODERATOR_KEY")
+TOKEN = config("TOKEN")
+BASE_URL = config("BASE_URL")
+FRONTEND_URL = config("FRONTEND_URL")
+MODERATOR_ID = int(config("MODERATOR_ID"))
+MODERATOR_KEY = config("MODERATOR_KEY")
